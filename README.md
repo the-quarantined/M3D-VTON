@@ -1,5 +1,4 @@
 # M3D-VTON: A Monocular-to-3D Virtual Try-On Network
-Official code for ICCV2021 paper "M3D-VTON: A Monocular-to-3D Virtual Try-on Network"
 
 [Paper](https://arxiv.org/abs/2108.05126) | [Supplementary](https://figshare.com/s/eaa35bf3a6b14f783bd5) | [MPV3D Dataset](https://drive.google.com/file/d/1qcynpXZ9eSlzTV-RDCr-Yip3GcuU314h/view?usp=sharing) | [Pretrained Models](https://figshare.com/s/fad809619d2f9ac666fc)
 
@@ -14,22 +13,6 @@ After downloading the [MPV3D Dataset](https://drive.google.com/file/d/1qcynpXZ9e
 ```sh
 python util/data_preprocessing.py --MPV3D_root path/to/MPV3D/dataset
 ```
-
-### Custom Data
-
-If you want to process your own data, some more steps are needed (the &#8594; indicates the corresponding folder where the images should be put into):
-
-1. prepare an in-shop clothing image *C* (&#8594; `mpv3d_example/cloth`) and a frontal person image *P* (&#8594; `mpv3d_example/image`) with resolution of 320*512;
-
-2. obtain the mask of *C* (&#8594; `mpv3d_example/cloth-mask`) by thresholding or using [remove.bg](https://www.remove.bg/);
-
-3. obtain the human segmentation layout (&#8594; `mpv3d_example/image-parse`) by applying [2D-Human-Paring](https://github.com/fyviezhao/2D-Human-Parsing) on *P*;
-
-4. obtain the human joints (&#8594; `mpv3d_example/pose`) by applying [OpenPose](https://github.com/CMU-Perceptual-Computing-Lab/openpose) (25 keypoints) on *P*;
-
-5. run the data processing script `python util/data_preprocessing.py --MPV3D_root mpv3d_example` to automatically obtain the remaining inputs (pre-aligned clothing, palm mask, and image gradients);
-
-6. now the data preparation is finished and you should be able to run inference with the steps described in the next section "Running Inference". 
 
 ## Running Inference
 We provide demo inputs under the `mpv3d_example` folder, where the target clothing and the reference person are like:
@@ -100,11 +83,8 @@ python train.py --model TFM --name TFM --dataroot path/to/MPV3D/data --warproot 
 
 (See options/base_options.py and options/train_options.py for more training options.)
 
-## License
-The use of this code and the MPV3D dataset is RESTRICTED to non-commercial research and educational purposes.
 
-## Citation
-If our code is helpful to your research, please cite:
+## Citation (fork from:)
 ```
 @InProceedings{M3D-VTON,
     author    = {Zhao, Fuwei and Xie, Zhenyu and Kampffmeyer, Michael and Dong, Haoye and Han, Songfang and Zheng, Tianxiang and Zhang, Tao and Liang, Xiaodan},
